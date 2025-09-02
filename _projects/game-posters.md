@@ -4,7 +4,12 @@ category: "Digital Art"
 description: "A collection of posters inspired by some of my favorite games."
 images:
   - /images/gameposter1.jpg
-  - /images/gameposter1.jpg
-  - /images/gameposter1.jpg
-highlight: false
+  - /images/gameposter2.jpg
+  - /images/gameposter3.jpg
+  - /images/gameposter4.jpg
+  - /images/gameposter5.jpg
+  - /images/gameposter6.jpg
+  - /images/gameposter7.jpg
+  - /images/gameposter8.jpg
+highlight: true
 ---
