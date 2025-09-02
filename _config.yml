@@ -1,3 +1,6 @@
-theme: jekyll-theme-minimal
-title: Aiden Kempista - Homepage
-description: Bookmark this to keep an eye on my project updates!
+title: "My Project Portfolio"
+description: "Physical and Digital Fabrication"
+theme: minima   # or leave blank if you’re rolling your own layout
+collections:
+  projects:
+    output: true
