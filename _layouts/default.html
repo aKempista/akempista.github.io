@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ site.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --primary: #1c1c1c;
+      --secondary: #CFB53B;
+      --highlight: #136F63;
+      --text: #FFFFF5;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--primary);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      padding: 2rem;
+      text-align: center;
+      background-color: var(--highlight);
+      color: var(--text);
+    }
+    h1 { margin: 0; font-size: 2.5rem; }
+    a { color: var(--secondary); text-decoration: none; }
+    .highlight-project, .projects { max-width: 1200px; margin: auto; }
+    .highlight-project {
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background-color: #222;
+      border-left: 6px solid var(--secondary);
+      border-radius: 12px;
+    }
+    .highlight-project h2 { color: var(--secondary); }
+    .highlight-project img {
+      width: 100%; max-height: 500px; object-fit: cover; border-radius: 8px;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .project {
+      background-color: #2a2a2a;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--highlight);
+      display: flex; flex-direction: column;
+    }
+    .carousel { position: relative; overflow: hidden; }
+    .carousel img { width: 100%; display: none; object-fit: cover; }
+    .carousel img.active { display: block; }
+    .carousel button {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); border: none; color: var(--text);
+      font-size: 1.5rem; padding: 0.5rem 1rem; cursor: pointer;
+    }
+    .carousel button.prev { left: 5px; }
+    .carousel button.next { right: 5px; }
+    .description { padding: 1rem; }
+    .description h3 { margin: 0 0 0.5rem; color: var(--secondary); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>{{ site.title }}</h1>
+    <p>{{ site.description }}</p>
+  </header>
+  <main>
+    {{ content }}
+  </main>
+
+  <script>
+    // Simple carousel logic
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.carousel').forEach(carousel => {
+        let images = carousel.querySelectorAll('img');
+        let index = 0;
+        const showImage = (i) => {
+          images.forEach(img => img.classList.remove('active'));
+          images[i].classList.add('active');
+        };
+        carousel.querySelector('.prev').addEventListener('click', () => {
+          index = (index - 1 + images.length) % images.length;
+          showImage(index);
+        });
+        carousel.querySelector('.next').addEventListener('click', () => {
+          index = (index + 1) % images.length;
+          showImage(index);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
