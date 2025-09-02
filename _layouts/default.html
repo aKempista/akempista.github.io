@@ -120,5 +120,44 @@
       });
     });
   </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Carousel logic
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      let images = carousel.querySelectorAll('img');
+      let index = 0;
+      const showImage = (i) => {
+        images.forEach(img => img.classList.remove('active'));
+        images[i].classList.add('active');
+      };
+      carousel.querySelector('.prev').addEventListener('click', () => {
+        index = (index - 1 + images.length) % images.length;
+        showImage(index);
+      });
+      carousel.querySelector('.next').addEventListener('click', () => {
+        index = (index + 1) % images.length;
+        showImage(index);
+      });
+    });
+  
+    // Filtering logic
+    const buttons = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.project');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        let category = btn.dataset.category;
+        projects.forEach(p => {
+          if (category === "all" || p.dataset.category === category) {
+            p.style.display = "flex";
+          } else {
+            p.style.display = "none";
+          }
+        });
+      });
+    });
+  });
+  </script>
 </body>
 </html>
