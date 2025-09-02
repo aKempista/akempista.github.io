@@ -9,5 +9,5 @@ images:
   - /images/svrd604.jpg
   - /images/svrd605.jpg
   - /images/svrd606.jpg
-highlight: true
+highlight: false
 ---
