@@ -28,6 +28,7 @@
     a { color: var(--secondary); text-decoration: none; }
     .highlight-project, .projects { max-width: 1200px; margin: auto; }
     .highlight-project {
+      max-width: 1200px;
       margin: 2rem auto;
       padding: 1.5rem;
       background-color: #222;
@@ -35,14 +36,19 @@
       border-radius: 12px;
     }
     .highlight-project h2 { color: var(--secondary); }
-    .highlight-project img {
-      width: 100%; max-height: 500px; object-fit: cover; border-radius: 8px;
+    .highlight-project .carousel img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain; /* no cropping */
+      border-radius: 8px;
     }
     .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 2rem;
       padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
     }
     .project {
       background-color: #2a2a2a;
@@ -52,7 +58,7 @@
       display: flex; flex-direction: column;
     }
     .carousel { position: relative; overflow: hidden; }
-    .carousel img { width: 100%; display: none; object-fit: cover; }
+    .carousel img { width: 100%; display: none; object-fit: contain; }
     .carousel img.active { display: block; }
     .carousel button {
       position: absolute; top: 50%; transform: translateY(-50%);
@@ -63,6 +69,25 @@
     .carousel button.next { right: 5px; }
     .description { padding: 1rem; }
     .description h3 { margin: 0 0 0.5rem; color: var(--secondary); }
+    .filter-bar {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .filter-bar button {
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 2px solid var(--secondary);
+      background: transparent;
+      color: var(--secondary);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .filter-bar button.active,
+    .filter-bar button:hover {
+      background: var(--secondary);
+      color: var(--primary);
+    }
   </style>
 </head>
 <body>
