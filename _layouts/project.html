@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+<article class="project-detail" style="max-width: 900px; margin: 2rem auto; padding: 1.5rem; background:#222; border-radius:12px;">
+  <h2 style="color: var(--secondary);">{{ page.title }}</h2>
+  <div class="carousel">
+    {% for img in page.images %}
+      <img src="{{ img }}" alt="{{ page.title }} image" {% if forloop.first %}class="active"{% endif %}>
+    {% endfor %}
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+  </div>
+  <p style="margin-top:1rem;">{{ page.description }}</p>
+  <div class="project-content">
+    {{ content }}
+  </div>
+  <p style="margin-top:1rem;"><a href="{{ "/" | relative_url }}" style="color: var(--highlight);">← Back to Portfolio</a></p>
+</article>
