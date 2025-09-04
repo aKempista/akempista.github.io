@@ -19,10 +19,40 @@
       line-height: 1.6;
     }
     header {
-      padding: 2rem;
-      text-align: center;
+      padding: 2rem 1rem;
       background-color: var(--highlight);
       color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    header .logo img {
+      max-height: 100px;   /* ✅ adjust logo size */
+      margin-bottom: 1rem;
+    }
+    
+    header .site-info {
+      max-width: 1200px;
+      width: 100%;
+      text-align: left;    /* ✅ left-align by default */
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+    }
+    
+    /* ✅ Mobile adjustments */
+    @media (max-width: 768px) {
+      header .site-info {
+        text-align: center;   /* ✅ center text on mobile */
+      }
     }
     h1 { margin: 0; font-size: 2.5rem; }
     a { color: var(--secondary); text-decoration: none; }
@@ -119,9 +149,15 @@
 </head>
 <body>
   <header>
+  <div class="logo">
+    <img src="/images/logo.png" alt="{{ site.title }} logo">
+  </div>
+  <div class="site-info">
     <h1>{{ site.title }}</h1>
     <p>{{ site.description }}</p>
-  </header>
+  </div>
+</header>
+
   <main>
     {{ content }}
   </main>
