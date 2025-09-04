@@ -5,7 +5,7 @@ layout: default
 <section class="highlight-project">
   {% assign highlight = site.projects | where: "highlight", true | first %}
   {% if highlight %}
-    <h2>✨ Highlighted Project: {{ highlight.title }}</h2>
+    <h2>Highlighted Project: {{ highlight.title }}</h2>
     <div class="carousel">
       {% for img in highlight.images %}
         <img src="{{ img }}" alt="{{ highlight.title }} image" {% if forloop.first %}class="active"{% endif %}>
