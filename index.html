@@ -27,19 +27,22 @@ layout: default
 
 <section class="projects">
   {% for project in site.projects %}
-    <div class="project" data-category="{{ project.category | downcase }}">
-      <div class="carousel">
-        {% for img in project.images %}
-          <img src="{{ img }}" alt="{{ project.title }} image" loading="lazy" {% if forloop.first %}class="active"{% endif %}>
-        {% endfor %}
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-      </div>
-      <div class="description">
-        <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
-        <p>{{ project.description }}</p>
-      </div>
+    <div class="project {% if project.highlight %}highlighted{% endif %}" data-category="{{ project.category | downcase }}">
+    {% if project.highlight %}
+      <span class="highlight-badge">Highlight</span>
+    {% endif %}
+    <div class="carousel">
+      {% for img in project.images %}
+        <img src="{{ img }}" alt="{{ project.title }} image" loading="lazy" {% if forloop.first %}class="active"{% endif %}>
+      {% endfor %}
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
     </div>
+    <div class="description">
+      <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+      <p>{{ project.description }}</p>
+    </div>
+  </div>
   {% endfor %}
 </section>
 
