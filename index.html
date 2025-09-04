@@ -27,11 +27,10 @@ layout: default
 
 <section class="projects">
   {% for project in site.projects %}
-    {% unless project.highlight %}
     <div class="project" data-category="{{ project.category | downcase }}">
       <div class="carousel">
         {% for img in project.images %}
-          <img src="{{ img }}" alt="{{ project.title }} image" {% if forloop.first %}class="active"{% endif %} loading="lazy">
+          <img src="{{ img }}" alt="{{ project.title }} image" loading="lazy" {% if forloop.first %}class="active"{% endif %}>
         {% endfor %}
         <button class="prev">&#10094;</button>
         <button class="next">&#10095;</button>
@@ -41,6 +40,6 @@ layout: default
         <p>{{ project.description }}</p>
       </div>
     </div>
-    {% endunless %}
   {% endfor %}
 </section>
+
