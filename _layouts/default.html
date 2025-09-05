@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <title>{{ site.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Asimovian&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #1c1c1c;
@@ -13,30 +17,58 @@
     }
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
       background-color: var(--primary);
       color: var(--text);
       line-height: 1.6;
     }
     header {
-      padding: 2rem;
-      text-align: left;
+      padding: 1.2rem 2rem 1.2rem 2rem;
       background-color: var(--highlight);
       color: var(--text);
+    }
+    .header-row {
       display: flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
+    }
+    .site-logo {
+      height: 40px;
+      width: auto;
+      margin-right: 1rem;
+      display: block;
+    }
+    .site-title {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 0;
+      line-height: 1;
+      font-family: "Asimovian", sans-serif;
+    }
+    header p {
+      margin: 0.5rem 0 0 0;
+      font-size: 1.2rem;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    }
+    @media (max-width: 768px) {
+      .header-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .site-title {
+        margin-top: 0.5rem;
+      }
     }
     
     header .logo img {
-      max-height: 100px;   /* ✅ adjust logo size */
+      max-height: 100px;
       margin-bottom: 1rem;
     }
     
     header .site-info {
       max-width: 1200px;
       width: 100%;
-      text-align: left;    /* ✅ left-align by default */
+      text-align: left;
     }
     
     header h1 {
@@ -48,6 +80,7 @@
     header p {
       margin: 0.5rem 0 0;
       font-size: 1.2rem;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
     }
     
     /* ✅ Mobile adjustments */
@@ -64,8 +97,19 @@
       margin: 2rem auto;
       padding: 1.5rem;
       background-color: #222;
-      border-left: 6px solid var(--secondary);
       border-radius: 12px;
+      border: 3px solid var(--secondary);
+      position: relative;
+      box-sizing: border-box;
+      width: calc(100% - 4rem);
+      min-width: 0;
+    }
+    @media (max-width: 600px) {
+      .highlight-project {
+        width: calc(100% - 1rem);
+        margin: 1rem auto;
+        padding: 1rem;
+      }
     }
     .highlight-project h2 { color: var(--secondary); }
     .highlight-project .carousel img {
@@ -157,8 +201,11 @@
 </head>
 <body>
   <header>
-    <h1>{{ site.title }}</h1>
-    <p>{{ site.description }}</p>
+      <div class="header-row">
+        <img src="/images/lambda_logo.png" alt="Lambda Logo" class="site-logo" />
+        <h1 class="site-title">{{ site.title }}</h1>
+      </div>
+      <p>{{ site.description }}</p>
   </header>
   <main>
     {{ content }}
@@ -204,7 +251,7 @@
         showImage(index);
       });
     });
-  
+
     // Filtering logic
     const buttons = document.querySelectorAll('.filter-btn');
     const projects = document.querySelectorAll('.project');
