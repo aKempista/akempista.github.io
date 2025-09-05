@@ -23,6 +23,38 @@
       text-align: left;
       background-color: var(--highlight);
       color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    header .logo img {
+      max-height: 100px;   /* ✅ adjust logo size */
+      margin-bottom: 1rem;
+    }
+    
+    header .site-info {
+      max-width: 1200px;
+      width: 100%;
+      text-align: left;    /* ✅ left-align by default */
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: bold; 
+    }
+    
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+    }
+    
+    /* ✅ Mobile adjustments */
+    @media (max-width: 768px) {
+      header .site-info {
+        text-align: center;   /* ✅ center text on mobile */
+      }
     }
     h1 { margin: 0; font-size: 2.5rem; }
     a { color: var(--secondary); text-decoration: none; }
@@ -54,7 +86,8 @@
       gap: 2rem;
       padding: 2rem;
       max-width: 1200px;
-      margin: auto;
+      margin: auto;          /* ✅ centers the whole grid */
+      box-sizing: border-box;
     }
     .project {
       background-color: #2a2a2a;
@@ -110,17 +143,22 @@
       border-radius: 4px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
+    @media (max-width: 768px) {
+      .projects {
+        padding: 1rem;       /* ✅ smaller padding but keeps margin on sides */
+      }
+      .project {
+        margin: 0 auto;      /* ✅ center single-column cards */
+        width: 100%;
+        max-width: 500px;    /* ✅ prevent stretching edge-to-edge */
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-content" style="display: flex; align-items: center;">
-      <img src="/images/lambda_logo.png" alt="Logo" class="site-logo">
-      <div class="site-title-desc" style="display: flex; flex-direction: column; align-items: flex-start;">
-        <h1 style="margin: 0;">{{ site.title }}</h1>
-        <p style="margin: 0;">{{ site.description }}</p>
-      </div>
-    </div>
+    <h1>{{ site.title }}</h1>
+    <p>{{ site.description }}</p>
   </header>
   <main>
     {{ content }}
