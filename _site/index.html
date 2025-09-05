@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <title>Aiden Kempista</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Asimovian&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #1c1c1c;
@@ -13,27 +17,89 @@
     }
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
       background-color: var(--primary);
       color: var(--text);
       line-height: 1.6;
     }
     header {
-      padding: 2rem;
-      text-align: left;
+      padding: 1.2rem 2rem 1.2rem 2rem;
       background-color: var(--highlight);
       color: var(--text);
+    }
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .site-logo {
+      height: 40px;
+      width: auto;
+      margin-right: 1rem;
+      display: block;
+    }
+    .site-title {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 0;
+      line-height: 1;
+      font-family: "Asimovian", sans-serif;
+    }
+    header p {
+      margin: 0.5rem 0 0 0;
+      font-size: 1.2rem;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    }
+    @media (max-width: 768px) {
+      .header-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .site-title {
+        margin-top: 0.5rem;
+      }
+    }
+    
+    header .logo img {
+      max-height: 100px;   /* ✅ adjust logo size */
+      margin-bottom: 1rem;
+    }
+    
+    header .site-info {
+      max-width: 1200px;
+      width: 100%;
+      text-align: left;    /* ✅ left-align by default */
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: bold; 
+    }
+    
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    }
+    
+    /* ✅ Mobile adjustments */
+    @media (max-width: 768px) {
+      header .site-info {
+        text-align: center;   /* ✅ center text on mobile */
+      }
     }
     h1 { margin: 0; font-size: 2.5rem; }
     a { color: var(--secondary); text-decoration: none; }
     .highlight-project, .projects { max-width: 1200px; margin: auto; }
     .highlight-project {
       max-width: 1200px;
-      margin: 2rem auto;
+      margin: 2rem 2rem;
       padding: 1.5rem;
       background-color: #222;
-      border-left: 6px solid var(--secondary);
       border-radius: 12px;
+      border: 3px solid var(--secondary);
+      position: relative;
     }
     .highlight-project h2 { color: var(--secondary); }
     .highlight-project .carousel img {
@@ -54,7 +120,8 @@
       gap: 2rem;
       padding: 2rem;
       max-width: 1200px;
-      margin: auto;
+      margin: auto;          /* ✅ centers the whole grid */
+      box-sizing: border-box;
     }
     .project {
       background-color: #2a2a2a;
@@ -110,17 +177,25 @@
       border-radius: 4px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
+    @media (max-width: 768px) {
+      .projects {
+        padding: 1rem;       /* ✅ smaller padding but keeps margin on sides */
+      }
+      .project {
+        margin: 0 auto;      /* ✅ center single-column cards */
+        width: 100%;
+        max-width: 500px;    /* ✅ prevent stretching edge-to-edge */
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-content" style="display: flex; align-items: center;">
-      <img src="/images/lambda_logo.png" alt="Logo" class="site-logo">
-      <div class="site-title-desc" style="display: flex; flex-direction: column; align-items: flex-start;">
-        <h1 style="margin: 0;">Aiden Kempista</h1>
-        <p style="margin: 0;">Physical and Digital Fabrication</p>
+      <div class="header-row">
+        <img src="/images/lambda_logo.png" alt="Lambda Logo" class="site-logo" />
+        <h1 class="site-title">Aiden Kempista</h1>
       </div>
-    </div>
+      <p>Physical and Digital Fabrication</p>
   </header>
   <main>
     <section class="highlight-project">
@@ -277,6 +352,11 @@
   document.addEventListener("DOMContentLoaded", () => {
     // Carousel logic
     document.querySelectorAll('.carousel').forEach(carousel => {
+        .header-row {
+          display: flex;
+          align-items: center;
+          width: 100%;
+        }
       let images = carousel.querySelectorAll('img');
       let index = 0;
       const showImage = (i) => {
