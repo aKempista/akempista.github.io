@@ -61,14 +61,14 @@
     }
     
     header .logo img {
-      max-height: 100px;   /* ✅ adjust logo size */
+      max-height: 100px;
       margin-bottom: 1rem;
     }
     
     header .site-info {
       max-width: 1200px;
       width: 100%;
-      text-align: left;    /* ✅ left-align by default */
+      text-align: left;
     }
     
     header h1 {
@@ -94,12 +94,22 @@
     .highlight-project, .projects { max-width: 1200px; margin: auto; }
     .highlight-project {
       max-width: 1200px;
-      margin: 2rem 2rem;
+      margin: 2rem auto;
       padding: 1.5rem;
       background-color: #222;
       border-radius: 12px;
       border: 3px solid var(--secondary);
       position: relative;
+      box-sizing: border-box;
+      width: calc(100% - 2rem);
+      min-width: 0;
+    }
+    @media (max-width: 600px) {
+      .highlight-project {
+        width: calc(100% - 1rem);
+        margin: 1rem auto;
+        padding: 1rem;
+      }
     }
     .highlight-project h2 { color: var(--secondary); }
     .highlight-project .carousel img {
@@ -352,11 +362,6 @@
   document.addEventListener("DOMContentLoaded", () => {
     // Carousel logic
     document.querySelectorAll('.carousel').forEach(carousel => {
-        .header-row {
-          display: flex;
-          align-items: center;
-          width: 100%;
-        }
       let images = carousel.querySelectorAll('img');
       let index = 0;
       const showImage = (i) => {
@@ -372,7 +377,7 @@
         showImage(index);
       });
     });
-  
+
     // Filtering logic
     const buttons = document.querySelectorAll('.filter-btn');
     const projects = document.querySelectorAll('.project');

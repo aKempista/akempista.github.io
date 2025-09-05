@@ -94,12 +94,22 @@
     .highlight-project, .projects { max-width: 1200px; margin: auto; }
     .highlight-project {
       max-width: 1200px;
-      margin: 2rem 2rem;
+      margin: 2rem auto;
       padding: 1.5rem;
       background-color: #222;
       border-radius: 12px;
       border: 3px solid var(--secondary);
       position: relative;
+      box-sizing: border-box;
+      width: calc(100% - 2rem);
+      min-width: 0;
+    }
+    @media (max-width: 600px) {
+      .highlight-project {
+        width: calc(100% - 1rem);
+        margin: 1rem auto;
+        padding: 1rem;
+      }
     }
     .highlight-project h2 { color: var(--secondary); }
     .highlight-project .carousel img {
