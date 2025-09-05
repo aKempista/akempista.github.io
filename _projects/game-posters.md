@@ -11,5 +11,6 @@ images:
   - /images/gameposter6.jpg
   - /images/gameposter7.jpg
   - /images/gameposter8.jpg
-highlight: true
+highlight: false
 ---
+Each of these posters were designed digtally through programs such as Affinity Designer and Procreate.
