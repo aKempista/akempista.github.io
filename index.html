@@ -19,30 +19,33 @@ layout: default
 
 <div class="filter-bar">
   <button class="filter-btn active" data-category="all">All</button>
-  {% assign categories = site.projects | map: "category" | uniq %}
-  {% for cat in categories %}
-    <button class="filter-btn" data-category="{{ cat | downcase }}">{{ cat }}</button>
+  {% assign all_categories = site.projects | map: 'categories' | join: ',' | split: ',' | uniq | sort %}
+  {% for cat in all_categories %}
+    {% unless cat == '' %}
+      <button class="filter-btn" data-category="{{ cat | downcase | strip }}">{{ cat | strip }}</button>
+    {% endunless %}
   {% endfor %}
 </div>
 
 <section class="projects">
   {% for project in site.projects %}
-    <div class="project {% if project.highlight %}highlighted{% endif %}" data-category="{{ project.category | downcase }}">
-    {% if project.highlight %}
-      <span class="highlight-badge">Highlight</span>
-    {% endif %}
-    <div class="carousel">
-      {% for img in project.images %}
-        <img src="{{ img }}" alt="{{ project.title }} image" loading="lazy" {% if forloop.first %}class="active"{% endif %}>
-      {% endfor %}
-      <button class="prev">&#10094;</button>
-      <button class="next">&#10095;</button>
+    {% assign cats = project.categories | join: ',' | downcase %}
+    <div class="project {% if project.highlight %}highlighted{% endif %}" data-category="{{ cats }}">
+      {% if project.highlight %}
+        <span class="highlight-badge">Highlight</span>
+      {% endif %}
+      <div class="carousel">
+        {% for img in project.images %}
+          <img src="{{ img }}" alt="{{ project.title }} image" loading="lazy" {% if forloop.first %}class="active"{% endif %}>
+        {% endfor %}
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+      </div>
+      <div class="description">
+        <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+        <p>{{ project.description }}</p>
+      </div>
     </div>
-    <div class="description">
-      <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
-      <p>{{ project.description }}</p>
-    </div>
-  </div>
   {% endfor %}
 </section>
 

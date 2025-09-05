@@ -261,10 +261,16 @@
         btn.classList.add('active');
         let category = btn.dataset.category;
         projects.forEach(p => {
-          if (category === "all" || p.dataset.category === category) {
+          if (category === "all") {
             p.style.display = "flex";
           } else {
-            p.style.display = "none";
+            // data-category is a comma-separated string of categories
+            const cats = p.getAttribute('data-category').split(',').map(s => s.trim());
+            if (cats.includes(category)) {
+              p.style.display = "flex";
+            } else {
+              p.style.display = "none";
+            }
           }
         });
       });
