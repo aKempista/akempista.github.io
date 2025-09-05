@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ site.title }}</title>
+  <title>Aiden Kempista</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root {
@@ -117,13 +117,41 @@
     <div class="header-content" style="display: flex; align-items: center;">
       <img src="/images/lambda_logo.png" alt="Logo" class="site-logo">
       <div class="site-title-desc" style="display: flex; flex-direction: column; align-items: flex-start;">
-        <h1 style="margin: 0;">{{ site.title }}</h1>
-        <p style="margin: 0;">{{ site.description }}</p>
+        <h1 style="margin: 0;">Aiden Kempista</h1>
+        <p style="margin: 0;">Physical and Digital Fabrication</p>
       </div>
     </div>
   </header>
   <main>
-    {{ content }}
+    <article class="project-detail" style="max-width: 900px; margin: 2rem auto; padding: 1.5rem; background:#222; border-radius:12px;">
+  <h2 style="color: var(--secondary);">Project Accelero</h2>
+  <div class="carousel">
+    
+      <img src="/images/accelero1.jpg" alt="Project Accelero image" class="active">
+    
+      <img src="/images/accelero2.jpg" alt="Project Accelero image" >
+    
+      <img src="/images/accelero3.jpg" alt="Project Accelero image" >
+    
+      <img src="/images/accelero4.jpg" alt="Project Accelero image" >
+    
+      <img src="/images/accelero5.jpg" alt="Project Accelero image" >
+    
+      <img src="/images/accelero6.jpg" alt="Project Accelero image" >
+    
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+  </div>
+  <p style="margin-top:1rem;">A game built around a generative track feature, which makes each race a new experience. Upgrades and difficulty scaling increase replayability. Built in the Godot game engine.</p>
+  <div class="project-content">
+    <p><em>Project Accelero</em> is an in-development racing game built in the Godot engine. You take on the role of a rookie starting your very own racing career, striving to become the World Champ. Races are broken down into tournamnts based in unique locales. One tournament might take place in the desert, while another is set in a snowy forest. AS your career progresses, you have the chance to gain sponsors based on your performance. More sponsors equals more upgrades and better cars, giving you an edge over the competition. If you lose a tournament, your career ends for good and you’ll have to start again as a rookie.</p>
+
+<p>The tracks are generated based on a “deck” of tiles such as <em>straightaway</em>, <em>right turn</em>, <em>oil spill</em>, <em>overpass</em>, or even a <em>ring-o-fire</em>. While new tiles can help make the races more exciting, they can also make them more challenging. After every tournament, players pick 1 of 3 tiles to add to their deck which will influence future races. Between races, players have a chance to spend money earned through sponsors on upgrades and new cars. This per-run progression helps give each career a unique feel and interesting replayability.</p>
+
+  </div>
+  <p style="margin-top:1rem;"><a href="/" style="color: var(--highlight);">← Back to Portfolio</a></p>
+</article>
+
   </main>
 
   <script>

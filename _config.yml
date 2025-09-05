@@ -1,6 +1,6 @@
-title: "Aiden Kempista // Lambda"
+title: "Aiden Kempista"
 description: "Physical and Digital Fabrication"
-theme: minima   # or leave blank if you’re rolling your own layout
+#ntheme: minima   # or leave blank if you’re rolling your own layout
 collections:
   projects:
     output: true
