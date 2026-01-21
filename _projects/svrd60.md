@@ -10,6 +10,7 @@ images:
   - /images/svrd605.jpg
   - /images/svrd606.jpg
 highlight: true
+layout: project
 ---
 The SVRD60 is a modular keyboard platform designed from the ground up. Starting with the PCB, a standard button matrix is used for the keyswitch layout. A USB hub integrated circuit was added to provide functionality to the removable modules.
 

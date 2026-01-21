@@ -10,6 +10,7 @@ images:
   - /images/longboards3.jpg
   - /images/longboards4.jpg
 highlight: false
+layout: project
 ---
 These longboards were created with a variety of methods, starting with creating an outline of the shape of the board, cutting multiple sheets of wood to match the footprint, and then gluing and pressing the boards into shape using a custom jig. Both laser cutters and traditional shop tools were used for construction.
 

@@ -8,7 +8,6 @@ images:
   - /images/soar3.jpg
   - /images/soar4.jpg
   - /images/soar5.jpg
-  - /images/soar6.jpg
 highlight: false
 layout: project
 ---
