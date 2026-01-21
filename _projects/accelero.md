@@ -6,9 +6,6 @@ images:
   - /images/accelero1.jpg
   - /images/accelero2.jpg
   - /images/accelero3.jpg
-  - /images/accelero4.jpg
-  - /images/accelero5.jpg
-  - /images/accelero6.jpg
 highlight: false
 layout: project
 ---
