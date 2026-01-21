@@ -1,1 +1,304 @@
-<p>Each of these posters were designed digtally through programs such as Affinity Designer and Procreate.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aiden Kempista</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Asimovian&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1c1c1c;
+      --secondary: #CFB53B;
+      --highlight: #4281A4;
+      --text: #FFFFF5;
+    }
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      background-color: var(--primary);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      padding: 1.2rem 2rem 1.2rem 2rem;
+      background-color: var(--highlight);
+      color: var(--text);
+    }
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .site-logo {
+      height: 40px;
+      width: auto;
+      margin-right: 1rem;
+      display: block;
+    }
+    .site-title {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 0;
+      line-height: 1;
+      font-family: "Asimovian", sans-serif;
+    }
+    header p {
+      margin: 0.5rem 0 0 0;
+      font-size: 1.2rem;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    }
+    @media (max-width: 768px) {
+      .header-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .site-title {
+        margin-top: 0.5rem;
+      }
+    }
+    
+    header .logo img {
+      max-height: 100px;
+      margin-bottom: 1rem;
+    }
+    
+    header .site-info {
+      max-width: 1200px;
+      width: 100%;
+      text-align: left;
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: bold; 
+    }
+    
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    }
+    
+    /* ✅ Mobile adjustments */
+    @media (max-width: 768px) {
+      header .site-info {
+        text-align: center;   /* ✅ center text on mobile */
+      }
+    }
+    h1 { margin: 0; font-size: 2.5rem; }
+    a { color: var(--secondary); text-decoration: none; }
+    .highlight-project, .projects { max-width: 1200px; margin: auto; }
+    .highlight-project {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background-color: #222;
+      border-radius: 12px;
+      border: 3px solid var(--secondary);
+      position: relative;
+      box-sizing: border-box;
+      width: calc(100% - 4rem);
+      min-width: 0;
+    }
+    @media (max-width: 600px) {
+      .highlight-project {
+        width: calc(100% - 1rem);
+        margin: 1rem auto;
+        padding: 1rem;
+      }
+    }
+    .highlight-project h2 { color: var(--secondary); }
+    .highlight-project .carousel img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain; /* no cropping */
+      border-radius: 8px;
+    }
+      .site-logo {
+        height: 80px;
+        width: auto;
+        margin-right: 1rem;
+        display: block;
+      }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;          /* ✅ centers the whole grid */
+      box-sizing: border-box;
+    }
+    .project {
+      background-color: #2a2a2a;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--highlight);
+      display: flex; flex-direction: column;
+    }
+    .carousel { position: relative; overflow: hidden; }
+    .carousel img { width: 100%; display: none; object-fit: contain; }
+    .carousel img.active { display: block; }
+    .carousel button {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); border: none; color: var(--text);
+      font-size: 1.5rem; padding: 0.5rem 1rem; cursor: pointer;
+    }
+    .carousel button.prev { left: 5px; }
+    .carousel button.next { right: 5px; }
+    .description { padding: 1rem; }
+    .description h3 { margin: 0 0 0.5rem; color: var(--secondary); }
+    .filter-bar {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .filter-bar button {
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 2px solid var(--secondary);
+      background: transparent;
+      color: var(--secondary);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .filter-bar button.active,
+    .filter-bar button:hover {
+      background: var(--secondary);
+      color: var(--primary);
+    }
+    .project.highlighted {
+    border: 3px solid var(--secondary);
+    position: relative;
+    }
+    .highlight-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--secondary);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: bold;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    @media (max-width: 768px) {
+      .projects {
+        padding: 1rem;       /* ✅ smaller padding but keeps margin on sides */
+      }
+      .project {
+        margin: 0 auto;      /* ✅ center single-column cards */
+        width: 100%;
+        max-width: 500px;    /* ✅ prevent stretching edge-to-edge */
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+      <div class="header-row">
+        <img src="/images/lambda_logo.png" alt="Lambda Logo" class="site-logo" />
+        <h1 class="site-title">Aiden Kempista</h1>
+      </div>
+      <p>Physical and Digital Fabrication</p>
+  </header>
+  <main>
+    <article class="project-detail" style="max-width: 900px; margin: 2rem auto; padding: 1.5rem; background:#222; border-radius:12px;">
+  <h2 style="color: var(--secondary);">Project Accelero</h2>
+  <div class="carousel">
+    
+      <img src="/images/gameposter1.jpg" alt="Game Poster image" class="active">
+    
+      <img src="/images/gameposter2.jpg" alt="Game Poster image" >
+    
+      <img src="/images/gameposter3.jpg" alt="Game Poster image" >
+    
+      <img src="/images/gameposter4.jpg" alt="Game Poster image" >
+    
+      <img src="/images/gameposter5.jpg" alt="Game Poster image" >
+    
+      <img src="/images/gameposter6.jpg" alt="Game Poster image" >
+    
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>Each of these posters were designed digtally through programs such as Affinity Designer and Procreate.</p>
+  <div class="project-content">
+    <p>These posters are inspired by a variety of games using different styles to reflect the personality of the game.</p>
+  </div>
+  <p style="margin-top:1rem;"><a href="/" style="color: var(--highlight);">← Back to Portfolio</a></p>
+</article>
+
+  </main>
+
+  <script>
+    // Simple carousel logic
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.carousel').forEach(carousel => {
+        let images = carousel.querySelectorAll('img');
+        let index = 0;
+        const showImage = (i) => {
+          images.forEach(img => img.classList.remove('active'));
+          images[i].classList.add('active');
+        };
+        carousel.querySelector('.prev').addEventListener('click', () => {
+          index = (index - 1 + images.length) % images.length;
+          showImage(index);
+        });
+        carousel.querySelector('.next').addEventListener('click', () => {
+          index = (index + 1) % images.length;
+          showImage(index);
+        });
+      });
+    });
+  </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Carousel logic
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      let images = carousel.querySelectorAll('img');
+      let index = 0;
+      const showImage = (i) => {
+        images.forEach(img => img.classList.remove('active'));
+        images[i].classList.add('active');
+      };
+      carousel.querySelector('.prev').addEventListener('click', () => {
+        index = (index - 1 + images.length) % images.length;
+        showImage(index);
+      });
+      carousel.querySelector('.next').addEventListener('click', () => {
+        index = (index + 1) % images.length;
+        showImage(index);
+      });
+    });
+
+    // Filtering logic
+    const buttons = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.project');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        let category = btn.dataset.category;
+        projects.forEach(p => {
+          if (category === "all") {
+            p.style.display = "flex";
+          } else {
+            // data-category is a comma-separated string of categories
+            const cats = p.getAttribute('data-category').split(',').map(s => s.trim());
+            if (cats.includes(category)) {
+              p.style.display = "flex";
+            } else {
+              p.style.display = "none";
+            }
+          }
+        });
+      });
+    });
+  });
+  </script>
+</body>
+</html>
