@@ -6,9 +6,9 @@ layout: default
   {% assign highlight = site.projects | where: "highlight", true | first %}
   {% if highlight %}
     <h2>Highlighted Project: {{ highlight.title }}</h2>
-    <div class="carousel">
+    <div class="carousel highlight-carousel">
       {% for img in highlight.images %}
-        <img src="{{ img }}" alt="{{ highlight.title }} image" {% if forloop.first %}class="active"{% endif %}>
+        <img src="{{ img }}" alt="{{ highlight.title }} image" {% if forloop.index0 < 3 %}class="active"{% endif %}>
       {% endfor %}
       <button class="prev">&#10094;</button>
       <button class="next">&#10095;</button>
