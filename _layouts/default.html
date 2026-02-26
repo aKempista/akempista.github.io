@@ -103,8 +103,8 @@
         display: block;
       }
 
-    /* hamburger menu */
-    .hamburger-nav { position: relative; }
+    /* hamburger side panel */
+    .hamburger-nav { position: relative; z-index: 2000; }
     .hamburger-nav .hamburger {
       font-size: 2rem;
       background: none;
@@ -112,20 +112,23 @@
       color: var(--primary);
       cursor: pointer;
       padding: 0.2rem;
+      z-index: 2100;
     }
     .hamburger-nav .dropdown {
-      display: none;
-      position: absolute;
-      right: 0;
-      top: 100%;
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
       background: var(--highlight);
-      border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      z-index: 1000;
+      transition: right 0.3s ease;
+      padding-top: 60px; /* leave space for hamburger */
+      box-shadow: -2px 0 6px rgba(0,0,0,0.3);
+      z-index: 2000;
     }
     .hamburger-nav .dropdown a {
       display: block;
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1rem;
       color: var(--primary);
       text-decoration: none;
     }
@@ -133,7 +136,7 @@
       background: var(--secondary);
       color: var(--text);
     }
-    .hamburger-nav.open .dropdown { display: block; }
+    .hamburger-nav.open .dropdown { right: 0; }
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -205,6 +208,7 @@
             <a href="{{ '/' | relative_url }}">Projects</a>
             <a href="https://github.com/aKempista" target="_blank" rel="noopener">GitHub</a>
             <a href="{{ '/about' | relative_url }}">About</a>
+            <a href="{{ '/resume' | relative_url }}">Resume</a>
           </div>
         </nav>
       </div>
