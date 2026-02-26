@@ -2,20 +2,6 @@
 layout: default
 ---
 
-<section class="highlight-project">
-  {% assign highlight = site.projects | where: "highlight", true | first %}
-  {% if highlight %}
-    <h2>Highlighted Project: {{ highlight.title }}</h2>
-    <div class="carousel highlight-carousel">
-      {% for img in highlight.images %}
-        <img src="{{ img }}" alt="{{ highlight.title }} image" {% if forloop.index0 < 3 %}class="active"{% endif %}>
-      {% endfor %}
-      <button class="prev">&#10094;</button>
-      <button class="next">&#10095;</button>
-    </div>
-    <p>{{ highlight.description }}</p>
-  {% endif %}
-</section>
 
 <div class="filter-bar">
   <button class="filter-btn active" data-category="all">All</button>
@@ -30,10 +16,7 @@ layout: default
 <section class="projects">
   {% for project in site.projects %}
     {% assign cats = project.categories | join: ',' | downcase %}
-    <div class="project {% if project.highlight %}highlighted{% endif %}" data-category="{{ cats }}">
-      {% if project.highlight %}
-        <span class="highlight-badge">Highlight</span>
-      {% endif %}
+    <div class="project" data-category="{{ cats }}">
       <div class="carousel">
         {% for img in project.images %}
           <img src="{{ img }}" alt="{{ project.title }} image" loading="lazy" {% if forloop.first %}class="active"{% endif %}>

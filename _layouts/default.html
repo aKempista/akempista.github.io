@@ -32,7 +32,7 @@
     .header-row {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
     }
     .site-logo {
       height: 40px;
@@ -95,39 +95,45 @@
     }
     h1 { margin: 0; font-size: 2.5rem; }
     a { color: var(--secondary); text-decoration: none; }
-    .highlight-project, .projects { max-width: 1200px; margin: auto; }
-    .highlight-project {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      background-color: var(--primary);
-      border-radius: 12px;
-      border: 3px solid var(--secondary);
-      position: relative;
-      box-sizing: border-box;
-      width: calc(100% - 4rem);
-      min-width: 0;
-    }
-    @media (max-width: 600px) {
-      .highlight-project {
-        width: calc(100% - 1rem);
-        margin: 1rem auto;
-        padding: 1rem;
-      }
-    }
-    .highlight-project h2 { color: var(--secondary); }
-    .highlight-project .carousel img {
-      width: 100%;
-      max-height: 500px;
-      object-fit: contain; /* no cropping */
-      border-radius: 8px;
-    }
+    .projects { max-width: 1200px; margin: auto; }
       .site-logo {
         height: 80px;
         width: auto;
         margin-right: 1rem;
         display: block;
       }
+
+    /* hamburger menu */
+    .hamburger-nav { position: relative; }
+    .hamburger-nav .hamburger {
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+      padding: 0.2rem;
+    }
+    .hamburger-nav .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background: var(--highlight);
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+    .hamburger-nav .dropdown a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .hamburger-nav .dropdown a:hover {
+      background: var(--secondary);
+      color: var(--text);
+    }
+    .hamburger-nav.open .dropdown { display: block; }
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -147,12 +153,6 @@
     .carousel { position: relative; overflow: hidden; }
     .carousel img { width: 100%; display: none; object-fit: contain; }
     .carousel img.active { display: block; }
-    /* highlight carousel shows three images simultaneously */
-    .highlight-project .highlight-carousel img { width: 32%; margin-right:1%; float:left; }
-    .highlight-project .highlight-carousel img.active { display: block; }
-    .highlight-project .highlight-carousel img:nth-child(3n) { margin-right:0; }
-    /* clear floats when needed */
-    .highlight-project .highlight-carousel::after { content: ""; display: block; clear: both; }
     .carousel button {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: rgba(0,0,0,0.5); border: none; color: var(--text);
@@ -181,22 +181,7 @@
       background: var(--secondary);
       color: var(--primary);
     }
-    .project.highlighted {
-    border: 3px solid var(--secondary);
-    position: relative;
-    }
-    .highlight-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: var(--secondary);
-      color: var(--primary);
-      font-size: 0.8rem;
-      font-weight: bold;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    }
+    
     @media (max-width: 768px) {
       .projects {
         padding: 1rem;       /* ✅ smaller padding but keeps margin on sides */
@@ -214,50 +199,20 @@
       <div class="header-row">
         <img src="/images/lambda_logo.png" alt="Lambda Logo" class="site-logo" />
         <h1 class="site-title">{{ site.title }}</h1>
+        <nav class="hamburger-nav">
+          <button class="hamburger" aria-label="Menu">&#9776;</button>
+          <div class="dropdown">
+            <a href="{{ '/' | relative_url }}">Projects</a>
+            <a href="https://github.com/aKempista" target="_blank" rel="noopener">GitHub</a>
+            <a href="{{ '/about' | relative_url }}">About</a>
+          </div>
+        </nav>
       </div>
   </header>
   <main>
     {{ content }}
   </main>
 
-  <script>
-    // Simple carousel logic
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll('.carousel').forEach(carousel => {
-        let images = carousel.querySelectorAll('img');
-        let index = 0;
-        const showImage = (i) => {
-          images.forEach(img => img.classList.remove('active'));
-          if (carousel.classList.contains('highlight-carousel')) {
-            // display three images starting at index i
-            for (let k=0; k<3; k++) {
-              images[(i + k) % images.length].classList.add('active');
-            }
-          } else {
-            images[i].classList.add('active');
-          }
-        };
-        carousel.querySelector('.prev').addEventListener('click', () => {
-          if (carousel.classList.contains('highlight-carousel')) {
-            // advance by 3 images on prev
-            index = (index - 3 + images.length * 10) % images.length;
-          } else {
-            index = (index - 1 + images.length) % images.length;
-          }
-          showImage(index);
-        });
-        carousel.querySelector('.next').addEventListener('click', () => {
-          if (carousel.classList.contains('highlight-carousel')) {
-            // advance by 3 images on next
-            index = (index + 3) % images.length;
-          } else {
-            index = (index + 1) % images.length;
-          }
-          showImage(index);
-        });
-      });
-    });
-  </script>
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     // Carousel logic
@@ -301,6 +256,15 @@
         });
       });
     });
+
+    // Hamburger toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navContainer = document.querySelector('.hamburger-nav');
+    if (hamburger && navContainer) {
+      hamburger.addEventListener('click', () => {
+        navContainer.classList.toggle('open');
+      });
+    }
   });
   </script>
 </body>
