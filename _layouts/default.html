@@ -229,7 +229,7 @@
         const showImage = (i) => {
           images.forEach(img => img.classList.remove('active'));
           if (carousel.classList.contains('highlight-carousel')) {
-            // display a sliding window of three
+            // display three images starting at index i
             for (let k=0; k<3; k++) {
               images[(i + k) % images.length].classList.add('active');
             }
@@ -238,11 +238,21 @@
           }
         };
         carousel.querySelector('.prev').addEventListener('click', () => {
-          index = (index - 1 + images.length) % images.length;
+          if (carousel.classList.contains('highlight-carousel')) {
+            // advance by 3 images on prev
+            index = (index - 3 + images.length * 10) % images.length;
+          } else {
+            index = (index - 1 + images.length) % images.length;
+          }
           showImage(index);
         });
         carousel.querySelector('.next').addEventListener('click', () => {
-          index = (index + 1) % images.length;
+          if (carousel.classList.contains('highlight-carousel')) {
+            // advance by 3 images on next
+            index = (index + 3) % images.length;
+          } else {
+            index = (index + 1) % images.length;
+          }
           showImage(index);
         });
       });
