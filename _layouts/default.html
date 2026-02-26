@@ -34,6 +34,12 @@
       align-items: center;
       justify-content: space-between;
     }
+    .header-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
     .site-logo {
       height: 40px;
       width: auto;
@@ -200,8 +206,10 @@
 <body>
   <header>
       <div class="header-row">
-        <img src="/images/lambda_logo.png" alt="Lambda Logo" class="site-logo" />
-        <h1 class="site-title">{{ site.title }}</h1>
+        <a href="{{ '/' | relative_url }}" class="header-link">
+          <img src="/images/lambda_logo.png" alt="Lambda Logo" class="site-logo" />
+          <h1 class="site-title">{{ site.title }}</h1>
+        </a>
         <nav class="hamburger-nav">
           <button class="hamburger" aria-label="Menu">&#9776;</button>
           <div class="dropdown">
