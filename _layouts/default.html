@@ -147,12 +147,23 @@
     .carousel { position: relative; overflow: hidden; }
     .carousel img { width: 100%; display: none; object-fit: contain; }
     .carousel img.active { display: block; }
-    /* highlight carousel shows three images simultaneously */
-    .highlight-project .highlight-carousel img { width: 32%; margin-right:1%; float:left; }
-    .highlight-project .highlight-carousel img.active { display: block; }
-    .highlight-project .highlight-carousel img:nth-child(3n) { margin-right:0; }
-    /* clear floats when needed */
-    .highlight-project .highlight-carousel::after { content: ""; display: block; clear: both; }
+    /* highlight carousel shows three images with smooth sliding */
+    .highlight-project .highlight-carousel {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+    }
+    .highlight-project .highlight-carousel img {
+      width: 32%;
+      margin-right: 1%;
+      flex-shrink: 0;
+      display: block !important;
+      object-fit: contain;
+      transition: transform 0.4s ease-in-out;
+    }
+    .highlight-project .highlight-carousel img:nth-child(3n) {
+      margin-right: 0;
+    }
     .carousel button {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: rgba(0,0,0,0.5); border: none; color: var(--text);
@@ -221,30 +232,43 @@
   </main>
 
   <script>
-    // Simple carousel logic
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll('.carousel').forEach(carousel => {
         let images = carousel.querySelectorAll('img');
         let index = 0;
-        const showImage = (i) => {
-          images.forEach(img => img.classList.remove('active'));
-          if (carousel.classList.contains('highlight-carousel')) {
-            // display a sliding window of three
-            for (let k=0; k<3; k++) {
-              images[(i + k) % images.length].classList.add('active');
-            }
-          } else {
+        
+        if (carousel.classList.contains('highlight-carousel')) {
+          // Smooth sliding carousel showing 3 images at once
+          const updateCarousel = (newIndex) => {
+            // Calculate slide offset: each image is 33% width + 1% margin
+            const slideWidth = 33; // percentage
+            const offset = -(newIndex * slideWidth);
+            carousel.style.transform = `translateX(${offset}%)`;
+          };
+          
+          carousel.querySelector('.prev').addEventListener('click', () => {
+            index = (index - 1 + images.length) % images.length;
+            updateCarousel(index);
+          });
+          carousel.querySelector('.next').addEventListener('click', () => {
+            index = (index + 1) % images.length;
+            updateCarousel(index);
+          });
+        } else {
+          // Standard carousel showing one image
+          const showImage = (i) => {
+            images.forEach(img => img.classList.remove('active'));
             images[i].classList.add('active');
-          }
-        };
-        carousel.querySelector('.prev').addEventListener('click', () => {
-          index = (index - 1 + images.length) % images.length;
-          showImage(index);
-        });
-        carousel.querySelector('.next').addEventListener('click', () => {
-          index = (index + 1) % images.length;
-          showImage(index);
-        });
+          };
+          carousel.querySelector('.prev').addEventListener('click', () => {
+            index = (index - 1 + images.length) % images.length;
+            showImage(index);
+          });
+          carousel.querySelector('.next').addEventListener('click', () => {
+            index = (index + 1) % images.length;
+            showImage(index);
+          });
+        }
       });
     });
   </script>
