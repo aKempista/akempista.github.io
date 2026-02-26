@@ -240,14 +240,10 @@
         if (carousel.classList.contains('highlight-carousel')) {
           // Smooth sliding carousel showing 3 images at once
           const updateCarousel = (newIndex) => {
-            // Each slot is 33.33% (3 images fit in 100% width)
-            const slideWidth = 100 / 3; // 33.33%
+            // Calculate slide offset: each image is 33% width + 1% margin
+            const slideWidth = 33; // percentage
             const offset = -(newIndex * slideWidth);
             carousel.style.transform = `translateX(${offset}%)`;
-            // Keep buttons in place with inverse transform
-            carousel.querySelectorAll('.prev, .next').forEach(btn => {
-              btn.style.transform = `translateX(${-offset}%)`;
-            });
           };
           
           carousel.querySelector('.prev').addEventListener('click', () => {
