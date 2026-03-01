@@ -11,4 +11,4 @@ highlight: false
 layout: project
 ---
 
-A small-scale Endor generator built from basic LEGO elements with tree and canopy suggestions.
+This diorama focuses on a pivotal location from _Star Wars: Episode VI - Return of the Jedi_, the shield generator for the Death Star. Within the diorama is both the generator dish as well as the iconic bunker door and landing pad.
