@@ -7,8 +7,6 @@ description: "A series of longboards I have designed and built."
 images:
   - /images/longboards1.jpg
   - /images/longboards2.jpg
-  - /images/longboards3.jpg
-  - /images/longboards4.jpg
 highlight: false
 layout: project
 ---

@@ -111,14 +111,40 @@
 
     /* hamburger side panel */
     .hamburger-nav { position: relative; z-index: 2000; }
+    /* Hamburger button (three bars) */
     .hamburger-nav .hamburger {
-      font-size: 2rem;
+      width: 44px;
+      height: 36px;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       background: none;
       border: none;
-      color: var(--primary);
       cursor: pointer;
-      padding: 0.2rem;
+      padding: 6px;
       z-index: 2100;
+    }
+    .hamburger-nav .hamburger .bar {
+      width: 26px;
+      height: 2px;
+      background: var(--primary);
+      display: block;
+      transition: transform 0.25s ease, opacity 0.2s ease;
+      transform-origin: center;
+    }
+    .hamburger-nav .hamburger .bar + .bar { margin-top: 6px; }
+
+    /* When nav is open, animate bars into an X */
+    .hamburger-nav.open .hamburger .bar.top {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger-nav.open .hamburger .bar.middle {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .hamburger-nav.open .hamburger .bar.bottom {
+      transform: translateY(-8px) rotate(-45deg);
     }
     .hamburger-nav .dropdown {
       position: fixed;
@@ -211,7 +237,11 @@
           <h1 class="site-title">{{ site.title }}</h1>
         </a>
         <nav class="hamburger-nav">
-          <button class="hamburger" aria-label="Menu">&#9776;</button>
+          <button class="hamburger" aria-label="Menu" aria-expanded="false">
+            <span class="bar top" aria-hidden="true"></span>
+            <span class="bar middle" aria-hidden="true"></span>
+            <span class="bar bottom" aria-hidden="true"></span>
+          </button>
           <div class="dropdown">
             <a href="{{ '/' | relative_url }}">Projects</a>
             <a href="https://github.com/aKempista" target="_blank" rel="noopener">GitHub</a>
@@ -269,12 +299,30 @@
       });
     });
 
-    // Hamburger toggle
+    // Hamburger toggle: animate to an X and manage aria-expanded
     const hamburger = document.querySelector('.hamburger');
     const navContainer = document.querySelector('.hamburger-nav');
     if (hamburger && navContainer) {
+      const dropdownLinks = navContainer.querySelectorAll('.dropdown a');
       hamburger.addEventListener('click', () => {
-        navContainer.classList.toggle('open');
+        const isOpen = navContainer.classList.toggle('open');
+        // reflect state for screen readers
+        hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      // close menu when any dropdown link is clicked
+      dropdownLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navContainer.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+      // close on Escape key when open
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navContainer.classList.contains('open')) {
+          navContainer.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.focus();
+        }
       });
     }
   });
