@@ -113,6 +113,10 @@
     .hamburger-nav { position: relative; z-index: 2000; }
     /* Hamburger button (three bars) */
     .hamburger-nav .hamburger {
+      /* keep the toggle visible and on top of the sliding panel */
+      position: fixed;           /* remove from normal flow so it can float above the dropdown */
+      top: 12px;
+      right: 12px;
       width: 44px;
       height: 36px;
       display: inline-flex;
@@ -123,7 +127,7 @@
       border: none;
       cursor: pointer;
       padding: 6px;
-      z-index: 2100;
+      z-index: 3000;             /* higher than the panel's 2000 so it always stays clickable */
     }
     .hamburger-nav .hamburger .bar {
       width: 26px;
@@ -156,7 +160,7 @@
       transition: right 0.3s ease;
       padding-top: 60px; /* leave space for hamburger */
       box-shadow: -2px 0 6px rgba(0,0,0,0.3);
-      z-index: 2000;
+      z-index: 2000;          /* stays below the fixed toggle */
     }
     .hamburger-nav .dropdown a {
       display: block;
