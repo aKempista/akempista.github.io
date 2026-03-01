@@ -11,4 +11,4 @@ highlight: false
 layout: project
 ---
 
-An alternate LEGO build for set 75976, reimagined as a hovercraft with a pilot seat and compact details.
+An alternate build for set 75976, creating a brand new vehicle for Hammond to wreak havoc in!

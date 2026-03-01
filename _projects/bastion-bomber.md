@@ -11,4 +11,4 @@ highlight: false
 layout: project
 ---
 
-An alternate LEGO bomber build featuring angled wings and bold orange accent pieces for contrast.
+This MOC uses only pieces from 75974, which created a tight constraint but pushed for more creative part usage.

@@ -11,4 +11,4 @@ highlight: false
 layout: project
 ---
 
-A tiny LEGO diorama showing the wreckage of an Imperial Star Destroyer on Jakku's sands.
+A microscale diorama showing the wreckage of an Imperial Star Destroyer on Jakku's sands. The model was designed with desk-displayability in mind, so it is small but iconic.
